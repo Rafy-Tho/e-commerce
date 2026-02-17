@@ -1,6 +1,6 @@
-import ENV from './src/configs/env.js';
-import app from './src/app.js';
 import http from 'http';
+import app from './src/app.js';
+import ENV from './src/configs/env.js';
 
 const PORT = ENV.PORT || 3000; // Define port using environment variables
 

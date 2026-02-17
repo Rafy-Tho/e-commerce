@@ -1,7 +1,8 @@
 import AppError from './AppError.js';
 
-function notFound(req, res, next) {
-  return next(new AppError('Resource not found', 404));
+export default function notFound(req, res, next) {
+  // Pass the error to the next middleware (which will be your errorMiddleware)
+  return next(
+    new AppError(`Can't find ${req.originalUrl} on this server!`, 404),
+  );
 }
-
-export default notFound;

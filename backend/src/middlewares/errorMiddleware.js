@@ -2,6 +2,11 @@
 function errorMiddleware(err, req, res, next) {
   let statusCode = err.statusCode || 500;
   let message = err.message || 'Internal Server Error';
+  // Multer specific error handling
+  if (err.code === 'LIMIT_FILE_SIZE') {
+    statusCode = 400;
+    message = 'File is too large. Max limit is 5MB.';
+  }
   // Mongoose bad ObjectId
   if (err.name === 'CastError') {
     statusCode = 400;

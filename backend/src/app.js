@@ -1,11 +1,11 @@
-import express from 'express';
 import cors from 'cors';
-import notFound from './middlewares/notFound.js';
-import errorMiddleware from './middlewares/errorMiddleware.js';
-import connectDB from './configs/database.js';
-import ENV from './configs/env.js';
+import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import connectDB from './configs/database.js';
+import ENV from './configs/env.js';
+import errorMiddleware from './middlewares/errorMiddleware.js';
+import notFound from './middlewares/notFound.js';
 
 // configuration
 const app = express();

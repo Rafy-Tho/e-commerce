@@ -26,7 +26,7 @@ const userSchema = mongoose.Schema(
       validate: [validator.isStrongPassword, 'Please use strong password'],
       select: false,
     },
-    profileImage: {
+    image: {
       type: String,
       default: 'default-avatar.png',
     },

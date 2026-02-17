@@ -10,19 +10,24 @@ const orderSchema = mongoose.Schema(
     },
     orderItems: [
       {
-        name: { type: String, required: true },
-        qty: {
-          type: Number,
-          required: true,
-          min: [1, 'Quantity must be at least 1'],
-        },
-        image: { type: String, required: true },
-        price: { type: Number, required: true },
-        product: {
-          type: mongoose.Schema.Types.ObjectId,
-          required: true,
-          ref: 'Product',
-        },
+        type: [
+          {
+            name: { type: String, required: true },
+            qty: {
+              type: Number,
+              required: true,
+              min: [1, 'Quantity must be at least 1'],
+            },
+            image: { type: String, required: true },
+            price: { type: Number, required: true },
+            product: {
+              type: mongoose.Schema.Types.ObjectId,
+              required: true,
+              ref: 'Product',
+            },
+          },
+        ],
+        validate: [(v) => v.length > 0, 'Order must have at least one item'],
       },
     ],
     shippingAddress: {

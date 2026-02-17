@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import ENV from '../configs/env.js';
 
@@ -25,7 +25,6 @@ const userSchema = mongoose.Schema(
       required: [true, 'Please provide a password'],
       validate: [validator.isStrongPassword, 'Please use strong password'],
       select: false,
-      trim: true,
     },
     profileImage: {
       type: String,

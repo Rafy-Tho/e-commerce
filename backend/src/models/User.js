@@ -6,7 +6,7 @@ import ENV from '../configs/env.js';
 
 const userSchema = mongoose.Schema(
   {
-    username: {
+    name: {
       type: String,
       required: [true, 'Please provide a username'],
       trim: true,
@@ -26,10 +26,20 @@ const userSchema = mongoose.Schema(
       validate: [validator.isStrongPassword, 'Please use strong password'],
       select: false,
     },
-    profileImage: {
+
+    gender: {
       type: String,
-      default: 'default-avatar.png',
+      required: [true, 'Please provide a gender'],
+      enum: ['male', 'female'],
     },
+
+    image: {
+      type: String,
+      default: function () {
+        return `${ENV.URL}/${this.gender === 'male' ? 'male.jpg' : 'female.jpg'}`;
+      },
+    },
+
     isAdmin: {
       type: Boolean,
       required: true,

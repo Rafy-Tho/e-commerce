@@ -6,7 +6,8 @@ import connectDB from './configs/database.js';
 import ENV from './configs/env.js';
 import errorMiddleware from './middlewares/errorMiddleware.js';
 import notFound from './middlewares/notFound.js';
-
+import cookieParser from 'cookie-parser';
+import authRoutes from './routes/user.js';
 // configuration
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -20,11 +21,14 @@ app.use(
     origin: ENV.CLIENT_URL,
   }),
 );
+app.use(cookieParser());
 // Connect to MongoDB
 connectDB();
 // static file image
 app.use(express.static(path.join(__dirname, '../uploads')));
 // routes
+
+app.use('/api/v1/user', authRoutes);
 
 // handle errors route
 app.use(notFound);

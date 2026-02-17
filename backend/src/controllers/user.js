@@ -2,22 +2,21 @@ import asyncHandler from '../middlewares/asyncHandler.js';
 import User from '../models/User.js';
 import AppError from '../middlewares/AppError.js';
 import createCookie from '../utils/createCookie.js';
+import ENV from '../configs/env.js';
 // @desc    Create a new user
 // @route   POST /api/v1/user/register
 // @access  Public
 export const createUser = asyncHandler(async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { name, email, password, gender } = req.body;
 
-  if (!username || !email || !password) {
+  if (!name || !email || !password || !gender) {
     return next(new AppError('Please fill all the inputs.', 400));
   }
   // check if user already exists
   const userExists = await User.findOne({ email });
   if (userExists) return next(new AppError('User already exists', 404));
   // create user
-  const user = await User.create({ username, email, password }).select(
-    '+password',
-  );
+  const user = await User.create({ name, email, password, gender });
 
   // create token
   const token = user.generateToken();
@@ -98,16 +97,21 @@ export const getUserProfile = asyncHandler(async (req, res, next) => {
 export const updateUserProfile = asyncHandler(async (req, res, next) => {
   // get user from request object
   const { _id } = req.user;
-  const { username } = req.body;
+  const { name, gender } = req.body || {};
+  console.log(req.body);
   const imageFile = req.file;
-  if (!username) return next(new AppError('Please provide a username.', 400));
+  console.log(imageFile);
+  if (!name || !gender)
+    return next(new AppError('Please provide name and gender.', 400));
   // find user
   const user = await User.findById(_id);
   if (!user) return next(new AppError('User not found', 404));
 
   // update user
-  if (username) user.username = username;
-  if (imageFile) user.image = imageFile.path;
+  if (name) user.name = name;
+  if (gender) user.gender = gender;
+
+  if (imageFile) user.image = `${ENV.URL}/${imageFile.filename}`;
 
   // save user
   await user.save();

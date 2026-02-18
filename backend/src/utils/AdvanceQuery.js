@@ -71,8 +71,8 @@ class AdvancedQuery {
 
   // 5️⃣ Pagination
   async paginate() {
-    const page = Number(this.queryString.page) || 1;
-    const limit = Number(this.queryString.limit) || 10;
+    const page = Math.max(1, Number(this.queryString.page) || 1);
+    const limit = Math.max(1, Number(this.queryString.limit) || 10);
     const skip = (page - 1) * limit;
 
     const total = await this.model.countDocuments(this.mongoQuery);

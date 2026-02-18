@@ -8,6 +8,7 @@ import errorMiddleware from './middlewares/errorMiddleware.js';
 import notFound from './middlewares/notFound.js';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/user.js';
+import productRouter from './routes/product.js';
 // configuration
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -26,8 +27,10 @@ app.use(cookieParser());
 connectDB();
 // static file image
 app.use(express.static(path.join(__dirname, '../uploads')));
+app.use(express.static(path.join(__dirname, '../public')));
 // routes
 
+app.use('/api/v1/products', productRouter);
 app.use('/api/v1/user', authRoutes);
 
 // handle errors route

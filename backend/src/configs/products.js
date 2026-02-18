@@ -64,7 +64,7 @@ export const products = [
     description: 'Pure and fresh whole milk from local farms.',
     price: 8,
     quantity: 150,
-    image: `${ENV.URL}/     milk-1.avif`,
+    image: `${ENV.URL}/milk-1.avif`,
   },
   {
     category: '69952dd2fd10c3044b9859e9',

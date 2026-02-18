@@ -26,7 +26,7 @@ const productSchema = mongoose.Schema(
     image: { type: String, required: [true, 'Product image is required'] },
     brand: { type: String, required: true },
     // Use 'quantity' or 'countInStock' consistently; usually countInStock is standard
-    countInStock: { type: Number, required: true, default: 0, min: 0 },
+    quantity: { type: Number, required: true, default: 0, min: 0 },
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Category',

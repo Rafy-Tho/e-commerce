@@ -98,9 +98,9 @@ export const updateUserProfile = asyncHandler(async (req, res, next) => {
   // get user from request object
   const { _id } = req.user;
   const { name, gender } = req.body || {};
-  console.log(req.body);
+
   const imageFile = req.file;
-  console.log(imageFile);
+
   if (!name || !gender)
     return next(new AppError('Please provide name and gender.', 400));
   // find user

@@ -37,8 +37,8 @@ export const addProduct = asyncHandler(async (req, res, next) => {
   });
 });
 // @desc    Update a product
-// @route   PUT /api/v1/products/:id
-// @access  Private/Admin
+// `@route`   PATCH /api/v1/products/:id
+// `@access`  Private/Admin
 export const updateProduct = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
   const { name, brand, category, description, price, quantity } = req.body;

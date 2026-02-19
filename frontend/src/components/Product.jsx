@@ -2,27 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Product = ({ product }) => {
   return (
-    <div className=" p-3 relative">
-      <div className="relative">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-48 object-contain rounded bg-slate-700 "
-        />
-        {/* <HeartIcon product={product} /> */}
-      </div>
 
-      <div className="p-4">
-        <Link to={`/product/${product._id}`}>
-          <h2 className="flex justify-between items-center">
-            <div className="text-lg">{product.name}</div>
-            <span className="bg-blue-400 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full">
-              $ {product.price}
-            </span>
-          </h2>
-        </Link>
-      </div>
-    </div>
   );
 };
 

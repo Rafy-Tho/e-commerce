@@ -30,7 +30,7 @@ export const createOrder = asyncHandler(async (req, res, next) => {
       (itemDB) => itemDB._id.toString() === itemClient._id,
     );
     if (!matchedItem) {
-      return next(new AppError('Item not found', 404));
+      throw new AppError('Item not found', 404);
     }
     return {
       name: matchedItem.name,

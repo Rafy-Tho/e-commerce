@@ -36,7 +36,7 @@ export const createOrder = asyncHandler(async (req, res, next) => {
       name: matchedItem.name,
       product: matchedItem._id,
       price: matchedItem.price,
-      quantity: itemClient.quantity,
+      quantity: itemClient.OrderQty,
       image: matchedItem.image,
     };
   });

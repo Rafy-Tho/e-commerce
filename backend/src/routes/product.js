@@ -4,6 +4,7 @@ import {
   addReview,
   deleteProduct,
   getAllProducts,
+  getAllProductsBrand,
   getProductById,
   getTopProducts,
   updateProduct,
@@ -15,6 +16,7 @@ const productRouter = express.Router();
 // Public routes
 productRouter.get('/', getAllProducts);
 productRouter.get('/top', getTopProducts);
+productRouter.get('/brand', getAllProductsBrand);
 productRouter.get('/:id', getProductById);
 // all product routes require authentication
 productRouter.use(authenticate);

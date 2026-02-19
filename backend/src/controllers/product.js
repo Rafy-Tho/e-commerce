@@ -96,7 +96,9 @@ export const getAllProducts = asyncHandler(async (req, res, next) => {
 
   await features.paginate();
 
-  const products = await features.query;
+  const products = await features.query.select(
+    '-reviews -numReviews -rating -createdAt -updatedAt -description',
+  );
 
   res.status(200).json({
     status: 'success',
@@ -108,7 +110,7 @@ export const getAllProducts = asyncHandler(async (req, res, next) => {
 
 export const getProductById = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
-  const product = await Product.findById(id);
+  const product = await Product.findById(id).populate('category');
   if (!product) {
     return next(new AppError('Product not found', 404));
   }
@@ -165,6 +167,28 @@ export const getTopProducts = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     message: 'Top products retrieved successfully',
+    products,
+  });
+});
+// @desc    Get all products by brand
+// @route   GET /api/v1/products/brand
+// @access  Public
+// eslint-disable-next-line no-unused-vars
+export const getAllProductsBrand = asyncHandler(async (req, res, next) => {
+  const products = await Product.aggregate([
+    { $sort: { createdAt: -1 } }, // newest first
+    {
+      $group: {
+        _id: '$brand',
+        product: { $first: '$$ROOT' },
+      },
+    },
+    { $replaceRoot: { newRoot: '$product' } },
+  ]);
+
+  res.status(200).json({
+    status: 'success',
+    results: products.length,
     products,
   });
 });

@@ -10,12 +10,12 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/user.js';
 import productRouter from './routes/product.js';
 import categoryRouter from './routes/category.js';
+import orderRouter from './routes/order.js';
 
 // configuration
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -31,11 +31,10 @@ connectDB();
 app.use(express.static(path.join(__dirname, '../uploads')));
 app.use(express.static(path.join(__dirname, '../public')));
 // routes
-
+app.use('/api/v1/orders', orderRouter);
 app.use('/api/v1/categories', categoryRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/user', authRoutes);
-
 // handle errors route
 app.use(notFound);
 app.use(errorMiddleware);

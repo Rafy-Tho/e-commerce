@@ -10,16 +10,13 @@ import { authenticate } from '../middlewares/auth.js';
 import { upload } from '../middlewares/multer.js';
 
 const authRoutes = express.Router();
-
+// Public routes
 authRoutes.post('/register', createUser);
 authRoutes.post('/login', loginUser);
 authRoutes.post('/logout', logoutUser);
-authRoutes.get('/profile', authenticate, getUserProfile);
-authRoutes.patch(
-  '/profile/update',
-  authenticate,
-  upload.single('image'),
-  updateUserProfile,
-);
+// All routes after this middleware require authentication
+authRoutes.use(authenticate);
+authRoutes.get('/profile', getUserProfile);
+authRoutes.patch('/profile/update', upload.single('image'), updateUserProfile);
 
 export default authRoutes;

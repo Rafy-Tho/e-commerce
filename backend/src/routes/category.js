@@ -9,11 +9,13 @@ import {
 import { authenticate, authorize } from '../middlewares/auth.js';
 
 const categoryRouter = express.Router();
-
-categoryRouter.post('/', authenticate, authorize('admin'), createCategory);
+// Public route
 categoryRouter.get('/', getCategories);
 categoryRouter.get('/:id', getCategory);
-categoryRouter.patch('/:id', authenticate, authorize('admin'), updateCategory);
-categoryRouter.delete('/:id', authenticate, authorize('admin'), deleteCategory);
+// Admin routes
+categoryRouter.use(authenticate, authorize('admin'));
+categoryRouter.post('/', createCategory);
+categoryRouter.patch('/:id', updateCategory);
+categoryRouter.delete('/:id', deleteCategory);
 
 export default categoryRouter;

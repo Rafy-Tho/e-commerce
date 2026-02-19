@@ -13,7 +13,7 @@ const orderSchema = mongoose.Schema(
         type: [
           {
             name: { type: String, required: true },
-            qty: {
+            quantity: {
               type: Number,
               required: true,
               min: [1, 'Quantity must be at least 1'],

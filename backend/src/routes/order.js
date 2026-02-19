@@ -21,7 +21,6 @@ orderRouter.get('/:id', getOrderById);
 orderRouter.use(authorize('admin'));
 orderRouter.get('/admin/dashboard', adminOrderDashboard);
 orderRouter.get('/admin/orders', getAllOrders);
-
 orderRouter.put('/:id/paid', markOrderAsPaid);
 orderRouter.put('/:id/delivered', markOrderAsDelivered);
 

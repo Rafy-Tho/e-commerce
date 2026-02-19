@@ -12,24 +12,17 @@ import { authenticate, authorize } from '../middlewares/auth.js';
 import { upload } from '../middlewares/multer.js';
 
 const productRouter = express.Router();
-
+// Public routes
 productRouter.get('/', getAllProducts);
 productRouter.get('/top', getTopProducts);
-productRouter.post(
-  '/',
-  authenticate,
-  authorize('admin'),
-  upload.single('image'),
-  addProduct,
-);
-productRouter.delete('/:id', authenticate, authorize('admin'), deleteProduct);
-productRouter.patch(
-  '/:id',
-  authenticate,
-  authorize('admin'),
-  upload.single('image'),
-  updateProduct,
-);
 productRouter.get('/:id', getProductById);
-productRouter.post('/:id/reviews', authenticate, addReview);
+// all product routes require authentication
+productRouter.use(authenticate);
+productRouter.post('/:id/reviews', addReview);
+// admin routes require admin role
+productRouter.use(authorize('admin'));
+productRouter.post('/', upload.single('image'), addProduct);
+productRouter.delete('/:id', deleteProduct);
+productRouter.patch('/:id', upload.single('image'), updateProduct);
+
 export default productRouter;

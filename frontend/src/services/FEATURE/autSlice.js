@@ -20,7 +20,8 @@ const authSlice = createSlice({
     clearUserCredentials: (state) => {
       state.user = null;
       state.expires = null;
-      localStorage.clear();
+      localStorage.removeItem('user');
+      localStorage.removeItem('expires');
     },
   },
 });

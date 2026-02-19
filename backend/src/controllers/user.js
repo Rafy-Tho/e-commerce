@@ -78,7 +78,7 @@ export const logoutUser = asyncHandler(async (req, res, next) => {
 // @desc    Get user profile
 // @route   GET /api/v1/user/profile
 // @access  Private
-export const getUserProfile = asyncHandler(async (req, res, next) => {
+export const getProfile = asyncHandler(async (req, res, next) => {
   // get user from request object
   const { _id } = req.user;
   // find user
@@ -94,7 +94,7 @@ export const getUserProfile = asyncHandler(async (req, res, next) => {
 // @desc    Update user profile
 // @route   PUT /api/v1/user/profile/update
 // @access  Private
-export const updateUserProfile = asyncHandler(async (req, res, next) => {
+export const updateProfile = asyncHandler(async (req, res, next) => {
   // get user from request object
   const { _id } = req.user;
   const { name, gender } = req.body || {};

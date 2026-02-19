@@ -100,6 +100,7 @@ export const adminOrderDashboard = asyncHandler(async (req, res, next) => {
 
         // 2️⃣ Total Sales
         totalSales: [
+          { $match: { isPaid: true } },
           {
             $group: {
               _id: null,

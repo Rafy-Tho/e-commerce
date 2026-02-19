@@ -1,10 +1,10 @@
 import express from 'express';
 import {
   createUser,
+  getProfile,
   loginUser,
   logoutUser,
-  getUserProfile,
-  updateUserProfile,
+  updateProfile,
 } from '../controllers/user.js';
 import { authenticate } from '../middlewares/auth.js';
 import { upload } from '../middlewares/multer.js';
@@ -16,7 +16,7 @@ authRoutes.post('/login', loginUser);
 authRoutes.post('/logout', logoutUser);
 // All routes after this middleware require authentication
 authRoutes.use(authenticate);
-authRoutes.get('/profile', getUserProfile);
-authRoutes.patch('/profile/update', upload.single('image'), updateUserProfile);
+authRoutes.get('/profile', getProfile);
+authRoutes.patch('/profile/update', upload.single('image'), updateProfile);
 
 export default authRoutes;

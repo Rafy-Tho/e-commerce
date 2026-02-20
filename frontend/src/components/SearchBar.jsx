@@ -5,9 +5,13 @@ import Message from './Message';
 import { useSearchParams } from 'react-router-dom';
 const SearchBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('All categories');
-  const [searchQuery, setSearchQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedCategory, setSelectedCategory] = useState(
+    searchParams.get('category') || 'All categories',
+  );
+  const [searchQuery, setSearchQuery] = useState(
+    searchParams.get('search') || '',
+  );
 
   const {
     data: { categories = [] } = {},
@@ -16,38 +20,34 @@ const SearchBar = () => {
   } = useGetCategoriesQuery();
 
   const handleCategorySelect = (category) => {
-    if (category === selectedCategory) {
-      setSelectedCategory('All categories');
+    const newCategory =
+      category === selectedCategory ? 'All categories' : category;
+    setSelectedCategory(newCategory);
+
+    if (newCategory === 'All categories') {
+      searchParams.delete('category');
     } else {
-      setSelectedCategory(category);
+      searchParams.set('category', newCategory);
     }
+    setSearchParams(searchParams);
     setIsDropdownOpen(false);
   };
 
   const handleSearchQueryChange = (e) => {
-    setSearchQuery(e.target.value);
-    if (!e.target.value.trim()) {
-      setSearchQuery('');
-      return;
+    const value = e.target.value;
+    setSearchQuery(value);
+
+    if (!value.trim()) {
+      searchParams.delete('search');
+      setSearchParams(searchParams);
     }
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (selectedCategory === 'All categories') {
-      searchParams.delete('category');
-      setSearchParams(searchParams);
-    } else {
-      searchParams.set('category', selectedCategory);
-      setSearchParams(searchParams);
-    }
-    if (searchQuery.trim()) {
-      searchParams.set('search', searchQuery);
-      setSearchParams(searchParams);
-    } else {
-      searchParams.delete('search');
-      setSearchParams(searchParams);
-    }
+    if (!searchQuery.trim()) return;
+    searchParams.set('search', searchQuery);
+    setSearchParams(searchParams);
   };
   if (isFetching) return <Loader />;
   if (error)
@@ -132,6 +132,7 @@ const SearchBar = () => {
           onChange={handleSearchQueryChange}
           className="px-3 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full placeholder:text-gray-500 outline-none"
           placeholder="Search for drinks name relative"
+          required
         />
 
         {/* Search Button */}

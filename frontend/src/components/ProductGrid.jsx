@@ -8,7 +8,7 @@ import Message from './Message';
 const ProductGrid = () => {
   const [searchParams] = useSearchParams();
   const { data, isFetching, error } = useGetProductsQuery(
-    Object.fromEntries(searchParams.entries()),
+    Object.fromEntries(searchParams.entries() || {}),
   );
 
   const { products } = data || {};

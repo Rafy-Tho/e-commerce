@@ -1,5 +1,5 @@
 import HeroSection from '../components/HeroSection';
-import ViewProduct from '../components/ViewProduct';
+import ViewProduct from '../components/products/ViewProduct';
 
 function Home() {
   return (

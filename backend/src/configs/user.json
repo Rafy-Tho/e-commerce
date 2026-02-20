@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Admin",
+    "email": "Admin@gmail.com",
+    "password": "Admin@123",
+    "gender": "male"
+  },
+  {
+    "name": "John Doe",
+    "email": "john.doe@gmail.com",
+    "password": "John@123",
+    "gender": "male"
+  },
+  {
+    "name": "Sarah Smith",
+    "email": "sarah.smith@gmail.com",
+    "password": "Sarah@123",
+    "gender": "female"
+  },
+  {
+    "name": "Michael Johnson",
+    "email": "michael.johnson@gmail.com",
+    "password": "Michael@123",
+    "gender": "male"
+  },
+  {
+    "name": "Emily Davis",
+    "email": "emily.davis@gmail.com",
+    "password": "Emily@123",
+    "gender": "female"
+  },
+  {
+    "name": "David Brown",
+    "email": "david.brown@gmail.com",
+    "password": "David@123",
+    "gender": "male"
+  },
+  {
+    "name": "Jessica Wilson",
+    "email": "jessica.wilson@gmail.com",
+    "password": "Jessica@123",
+    "gender": "female"
+  },
+  {
+    "name": "Daniel Taylor",
+    "email": "daniel.taylor@gmail.com",
+    "password": "Daniel@123",
+    "gender": "male"
+  },
+  {
+    "name": "Olivia Anderson",
+    "email": "olivia.anderson@gmail.com",
+    "password": "Olivia@123",
+    "gender": "female"
+  },
+  {
+    "name": "James Thomas",
+    "email": "james.thomas@gmail.com",
+    "password": "James@123",
+    "gender": "male"
+  },
+  {
+    "name": "Sophia Martinez",
+    "email": "sophia.martinez@gmail.com",
+    "password": "Sophia@123",
+    "gender": "female"
+  }
+]

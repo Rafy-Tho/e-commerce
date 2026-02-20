@@ -110,7 +110,9 @@ export const getAllProducts = asyncHandler(async (req, res, next) => {
 
 export const getProductById = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
-  const product = await Product.findById(id).populate('category');
+  const product = await Product.findById(id)
+    .populate('category')
+    .populate('reviews.user');
   if (!product) {
     return next(new AppError('Product not found', 404));
   }

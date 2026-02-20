@@ -47,7 +47,7 @@ const Product = ({ product }) => {
       </a>
 
       {/* Quantity controls */}
-      <div className="min-h-[50px] p-4 !pt-0">
+      <div className="min-h-[50px] p-4 !pt-0 z-10">
         <div className="absolute left-0 right-0 bottom-3 max-w-[88%] mx-auto">
           {product.quantity > 0 && !isInCart && (
             <button

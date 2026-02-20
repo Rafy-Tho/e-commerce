@@ -1,4 +1,5 @@
 import Filter from '../components/Filter';
+import Pagination from '../components/Pagination';
 import ProductGrid from '../components/ProductGrid';
 import SearchBar from '../components/SearchBar';
 

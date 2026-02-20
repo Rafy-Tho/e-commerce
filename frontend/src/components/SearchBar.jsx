@@ -29,6 +29,9 @@ const SearchBar = () => {
     } else {
       searchParams.set('category', newCategory);
     }
+    if (searchParams.get('page')) {
+      searchParams.delete('page');
+    }
     setSearchParams(searchParams);
     setIsDropdownOpen(false);
   };

@@ -23,11 +23,11 @@ const ViewProduct = () => {
         Top Categories
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-6 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-6 gap-4 z-10">
         {products?.map((product) => (
           <div
             key={product._id}
-            className="bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all"
+            className="bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all"
           >
             <div className="w-full aspect-[41/50] overflow-hidden mx-auto">
               <img

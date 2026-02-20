@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function useClose(drawerRef, isOpen, closeDrawer) {
+function useClickOutSideClose(drawerRef, isOpen, closeDrawer) {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -17,4 +17,4 @@ function useClose(drawerRef, isOpen, closeDrawer) {
   }, [isOpen]);
 }
 
-export default useClose;
+export default useClickOutSideClose;

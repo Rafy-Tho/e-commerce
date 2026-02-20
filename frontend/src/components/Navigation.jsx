@@ -1,25 +1,31 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import logo from '../assets/logo.jpg'; // Update this path
 import { Link, NavLink } from 'react-router-dom';
+import CartIcon from '../cart/CartIcon';
+import { useSelector } from 'react-redux';
+import useClickOutSideClose from '../hooks/useClickOutSideClose';
 
 const Navigation = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const { user } = useSelector((state) => state.auth);
+  const userMenuRef = useRef(null);
+  useClickOutSideClose(userMenuRef, isUserMenuOpen, setIsUserMenuOpen);
   return (
     <nav className="bg-white fixed w-full z-20 top-0  border-b border-gray-200 mx-auto lg:max-w-6xl md:max-w-4xl">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a
-          href="https://flowbite.com/"
+        <Link
+          to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img src={logo} className="h-7" alt="Flowbite Logo" />
           <span className="self-center text-xl text-gray-900 font-semibold whitespace-nowrap">
             Drink Up
           </span>
-        </a>
+        </Link>
 
-        <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-5">
+          <CartIcon />
           <div className="relative">
             <button
               type="button"
@@ -29,25 +35,34 @@ const Navigation = () => {
               onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
             >
               <span className="sr-only">Open user menu</span>
-              <img
-                className="w-8 h-8 rounded-full"
-                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                alt="user photo"
-              />
+              {user?.image ? (
+                <img
+                  className="w-8 h-8 rounded-full"
+                  src={user?.image}
+                  alt="user photo"
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center">
+                  <span className="text-white text-sm font-medium">
+                    {user?.email?.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+              )}
             </button>
 
             {/* Dropdown menu */}
             {isUserMenuOpen && (
               <div
+                ref={userMenuRef}
                 className="absolute right-0 z-50 bg-white border border-gray-200 rounded-lg shadow-lg w-44 mt-2"
                 id="user-dropdown"
               >
                 <div className="px-4 py-3 text-sm border-b border-gray-200">
                   <span className="block text-gray-900 font-medium">
-                    Joseph McFall
+                    {user?.name || 'User'}
                   </span>
                   <span className="block text-gray-500 truncate">
-                    name@flowbite.com
+                    {user?.email || 'user@example.com'}
                   </span>
                 </div>
                 <ul
@@ -127,6 +142,7 @@ const Navigation = () => {
             <li>
               <NavLink
                 to="/"
+                onClick={() => scrollTo(0, 0)}
                 className={({ isActive }) =>
                   isActive
                     ? 'block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0'
@@ -140,6 +156,7 @@ const Navigation = () => {
             <li>
               <NavLink
                 to="/products"
+                onClick={() => scrollTo(0, 0)}
                 className={({ isActive }) =>
                   isActive
                     ? 'block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0'
@@ -151,6 +168,7 @@ const Navigation = () => {
             </li>
             <li>
               <NavLink
+                onClick={() => scrollTo(0, 0)}
                 to="/about"
                 className={({ isActive }) =>
                   isActive
@@ -163,6 +181,7 @@ const Navigation = () => {
             </li>
             <li>
               <NavLink
+                onClick={() => scrollTo(0, 0)}
                 to="/feature"
                 className={({ isActive }) =>
                   isActive
@@ -176,6 +195,7 @@ const Navigation = () => {
 
             <li>
               <NavLink
+                onClick={() => scrollTo(0, 0)}
                 to="/contact"
                 className={({ isActive }) =>
                   isActive

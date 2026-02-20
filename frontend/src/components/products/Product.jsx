@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../../services/FEATURE/cartSlice';
+import { Link } from 'react-router-dom';
 
 const Product = ({ product }) => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -10,7 +11,7 @@ const Product = ({ product }) => {
       key={product.id}
       className="bg-white flex flex-col rounded-sm overflow-hidden shadow-md hover:scale-[1.01] transition-all relative group"
     >
-      <a href="javascript:void(0)" className="block">
+      <Link to={`/products/${product._id}`} className="block">
         <div className="w-full">
           <img
             src={product.image}
@@ -44,7 +45,7 @@ const Product = ({ product }) => {
             </div>
           </div>
         </div>
-      </a>
+      </Link>
 
       {/* Quantity controls */}
       <div className="min-h-[50px] p-4 !pt-0 z-10">

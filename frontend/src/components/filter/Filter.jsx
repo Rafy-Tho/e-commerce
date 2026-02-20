@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
-import useClose from '../../hooks/useClose';
+import { useSearchParams } from 'react-router-dom';
+import useClickOutSideClose from '../../hooks/useClickOutSideClose';
 import BrandFilter from './BrandFilter';
 import PriceFilter from './PriceFilter';
 import RatingFilter from './RatingFilter';
-import { useSearchParams } from 'react-router-dom';
 
 const Filter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -38,7 +38,7 @@ const Filter = () => {
   };
 
   // Handle click outside to close
-  useClose(drawerRef, isOpen, closeDrawer);
+  useClickOutSideClose(drawerRef, isOpen, closeDrawer);
 
   return (
     <div>

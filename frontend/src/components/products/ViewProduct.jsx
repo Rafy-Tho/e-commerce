@@ -1,6 +1,6 @@
-import { useGetProductsBrandQuery } from '../services/API/productApiSlice';
-import Loader from './Loader';
-import Message from './Message';
+import { useGetProductsBrandQuery } from '../../services/API/productApiSlice';
+import Loader from '../Loader';
+import Message from '../Message';
 
 const ViewProduct = () => {
   const {

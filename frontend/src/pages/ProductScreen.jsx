@@ -1,6 +1,6 @@
-import Filter from '../components/Filter';
+import Filter from '../components/filter/Filter';
 import Pagination from '../components/Pagination';
-import ProductGrid from '../components/ProductGrid';
+import ProductGrid from '../components/products/ProductGrid';
 import SearchBar from '../components/SearchBar';
 
 function ProductScreen() {

@@ -1,9 +1,9 @@
 import { useSearchParams } from 'react-router-dom';
 import Product from './Product';
-import { useGetProductsQuery } from '../services/API/productApiSlice';
-import Loader from './Loader';
-import Message from './Message';
-import Pagination from './Pagination';
+import { useGetProductsQuery } from '../../services/API/productApiSlice';
+import Loader from '../Loader';
+import Message from '../Message';
+import Pagination from '../Pagination';
 // Sample product data
 
 const ProductGrid = () => {

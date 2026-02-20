@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import useClose from '../hooks/useClose';
+import useClose from '../../hooks/useClose';
 import BrandFilter from './BrandFilter';
 import PriceFilter from './PriceFilter';
 import RatingFilter from './RatingFilter';

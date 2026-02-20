@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { ratings } from '../constants/ratings';
+import { ratings } from '../../constants/ratings';
 
 function RatingFilter({ selectedRating, setSelectedRating }) {
   const [searchParams, setSearchParams] = useSearchParams();

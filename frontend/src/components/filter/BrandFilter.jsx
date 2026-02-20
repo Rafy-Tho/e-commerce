@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useGetBrandNamesQuery } from '../services/API/productApiSlice';
-import Loader from './Loader';
-import Message from './Message';
+import { useGetBrandNamesQuery } from '../../services/API/productApiSlice';
+import Loader from '../Loader';
+import Message from '../Message';
 import { useSearchParams } from 'react-router-dom';
 
 function BrandFilter({ selectedBrands, setSelectedBrands }) {

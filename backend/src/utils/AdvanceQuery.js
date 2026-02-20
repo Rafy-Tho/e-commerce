@@ -29,7 +29,7 @@ class AdvancedQuery {
     }
 
     this.query = this.model.find(this.mongoQuery);
-
+    console.log({ mongoQuery: this.mongoQuery });
     return this;
   }
 
@@ -78,14 +78,17 @@ class AdvancedQuery {
     const total = await this.model.countDocuments(this.mongoQuery);
 
     if (page * limit < total) {
-      this.pagination.next = { page: page + 1, limit };
+      this.pagination.next = page + 1;
     }
 
     if (page > 1) {
-      this.pagination.prev = { page: page - 1, limit };
+      this.pagination.prev = page - 1;
     }
 
-    this.pagination.total = total;
+    this.pagination.totalItems = total;
+    this.pagination.currentPage = page;
+    this.pagination.limit = limit;
+    this.pagination.totalPages = Math.ceil(total / limit);
     this.query = this.query.skip(skip).limit(limit);
 
     return this;

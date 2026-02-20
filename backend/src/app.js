@@ -11,6 +11,7 @@ import authRoutes from './routes/user.js';
 import productRouter from './routes/product.js';
 import categoryRouter from './routes/category.js';
 import orderRouter from './routes/order.js';
+import morgan from 'morgan';
 
 // configuration
 const app = express();
@@ -25,6 +26,7 @@ app.use(
   }),
 );
 app.use(cookieParser());
+app.use(morgan('dev'));
 // Connect to MongoDB
 connectDB();
 // static file image

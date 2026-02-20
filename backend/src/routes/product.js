@@ -3,6 +3,7 @@ import {
   addProduct,
   addReview,
   deleteProduct,
+  getAllBrandName,
   getAllProducts,
   getAllProductsBrand,
   getProductById,
@@ -17,6 +18,7 @@ const productRouter = express.Router();
 productRouter.get('/', getAllProducts);
 productRouter.get('/top', getTopProducts);
 productRouter.get('/brand', getAllProductsBrand);
+productRouter.get('/brand/names', getAllBrandName);
 productRouter.get('/:id', getProductById);
 // all product routes require authentication
 productRouter.use(authenticate);

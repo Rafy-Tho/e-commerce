@@ -192,3 +192,15 @@ export const getAllProductsBrand = asyncHandler(async (req, res, next) => {
     products,
   });
 });
+// @desc    Get all brand names
+// @route   GET /api/v1/products/brand/names
+// @access  Public
+// eslint-disable-next-line no-unused-vars
+export const getAllBrandName = asyncHandler(async (req, res, next) => {
+  const brands = await Product.distinct('brand');
+  res.status(200).json({
+    status: 'success',
+    results: brands.length,
+    brands,
+  });
+});
